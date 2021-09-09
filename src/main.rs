@@ -1,5 +1,6 @@
 mod cli_input_parser;
 
 fn main() {
-    let (opts, is_payload_file) = cli_input_parser::get_opts();
+    let opts: cli_input_parser::Opts = cli_input_parser::get_opts();
+    println!("beans")
 }

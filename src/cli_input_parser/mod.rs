@@ -13,23 +13,38 @@ use std::path::Path;
 #[derive(Clap)]
 #[clap(version = "1.0", author = "Oriel <Orianafarrugia3@gmail.com>")]
 pub struct Opts {
-
-    /// The payload, can be either a text string or a filepath.
-    #[clap(short, long)]
-    pub payload: String,
-
-    /// The hashing algorithm, a text string.
-    #[clap(short, long)]
-    pub algorithm: String,
+    /// The hashing algorithm to use.
+    #[clap(subcommand)]
+    pub algorithm: Algorithm, 
 
     /// A level of verbosity, can be used multiple times.
     #[clap(short, long, parse(from_occurrences))]
     pub verbose: i32,
 }
 
-pub fn get_opts() -> (Opts, bool) {
-    let opts: Opts = Opts::parse();
-    let is_payload_file: bool = Path::new(&opts.payload).is_file();
+#[derive(Clap)]
+pub enum Algorithm {
+    MD5(MD5),
+    MD2(MD2)
+}
 
-    (opts, is_payload_file)
+/// The MD5 Hashing algorithm
+#[derive(Clap)]
+#[clap(version = "1.0", author = "Oriel <Orianafarrugia3@gmail.com>", about = "The MD5 Hashing algorithm boop")]
+pub struct MD5 {
+    /// A text string or file.
+    pub payload: String,
+}
+
+/// The MD2 Hashing algorithm
+#[derive(Clap)]
+#[clap(version = "1.0", author = "Oriel <Orianafarrugia3@gmail.com>", about = "The MD2 Hashing algorithm boop")]
+pub struct MD2 {
+    /// A text string or file.
+    pub payload: String,
+}
+
+pub fn get_opts() -> Opts {
+    let opts: Opts = Opts::parse();
+    opts
 }
