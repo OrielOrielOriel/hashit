@@ -1,6 +1,10 @@
-mod cli_input_parser;
+mod input;
+use input::{get_opts, Opts};
+
+mod hashers;
 
 fn main() {
-    let opts: cli_input_parser::Opts = cli_input_parser::get_opts();
-    println!("beans")
+    let opts: Opts = get_opts();
+    println!("{:?}", opts.algorithm);
+    println!("{:?}", opts.algorithm);
 }
