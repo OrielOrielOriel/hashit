@@ -1,10 +1,9 @@
 mod input;
-use input::{get_opts, Opts};
+use input::{get_opts};
 
-mod hashers;
+mod algorithms;
+use algorithms::{md5, Algorithm};
 
 fn main() {
-    let opts: Opts = get_opts();
-    println!("{:?}", opts.algorithm);
-    println!("{:?}", opts.algorithm);
+    get_opts();
 }

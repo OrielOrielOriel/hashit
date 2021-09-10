@@ -8,22 +8,46 @@ When the user provides CLI input, we need to parse it for:
 and so on.
 */
 use clap::Clap;
-
-use crate::hashers::{subcommand_structures};
+use std::path::Path;
+use crate::algorithms;
 
 #[derive(Clap)]
 #[clap(version = "1.0", author = "Oriel <Orianafarrugia3@gmail.com>")]
-pub struct Opts {
+struct Opts {
     /// The hashing algorithm to use.
     #[clap(subcommand)]
-    pub algorithm: subcommand_structures::algorithm, 
+    algorithm: algorithms::Algorithm, 
 
     /// A level of verbosity, can be used multiple times.
     #[clap(short, long, parse(from_occurrences))]
-    pub verbose: i32,
+    verbose: i32,
 }
 
-pub fn get_opts() -> Opts {
-    let opts: Opts = Opts::parse();
-    opts
+pub fn check_if_file(payload: &String) -> bool {
+    let path = Path::new(payload);
+    path.is_file()
 }
+
+pub fn get_opts() -> () {
+    let opts: Opts = Opts::parse();
+    
+    match opts.algorithm {
+        algorithms::Algorithm::md5(options) => {
+            if check_if_file(&options.payload) {
+                println!("file");
+            } else {
+                println!("not file");
+            }
+        }
+    }
+}
+
+// pub fn get_opts() -> () {
+//     let opts: Opts = Opts::parse();
+    
+//     let job: algorithms::Job = algorithms::Job {
+//         name = opts.algorithm,
+//         data = opts.algorithm.payload,
+//         id = 1234,
+//     } 
+// }
