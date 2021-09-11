@@ -9,21 +9,32 @@ and so on.
 */
 use clap::Clap;
 use std::path::Path;
-use crate::algorithms;
+use crate::algorithms::*;
 
 #[derive(Clap)]
 #[clap(version = "1.0", author = "Oriel <Orianafarrugia3@gmail.com>")]
-pub struct Opts {
+struct Opts {
     /// The hashing algorithm to use.
     #[clap(subcommand)]
-    pub algorithm: algorithms::AlgorithmsList, 
+    algorithm: AlgorithmsList, 
 
     /// A level of verbosity, can be used multiple times.
     #[clap(short, long, parse(from_occurrences))]
-    pub verbose: i32,
+    verbose: i32,
 }
 
-pub fn check_if_file(payload: &String) -> bool {
+fn get_options() -> Opts {
+    let ret: Opts = Opts::parse();
+    ret
+}
+
+pub fn instantiate_task(options: Opts) -> TerminalTask {
+    let mut task: TerminalTask = TerminalTask::new();
+
+    task
+}
+
+fn check_if_file(payload: &String) -> bool {
     let path: &Path = Path::new(payload);
     path.is_file()
 }
@@ -36,4 +47,11 @@ pub fn check_if_file(payload: &String) -> bool {
 //         data = opts.algorithm.payload,
 //         id = 1234,
 //     } 
+// }
+// let opts: Opts = Opts::parse();
+// match opts.algorithm {
+//     AlgorithmsList::md5(options) => { 
+//         md5::hash_controller(&options.payload);
+//      },
+//     _ => println!("none")
 // }
