@@ -13,33 +13,19 @@ use crate::algorithms;
 
 #[derive(Clap)]
 #[clap(version = "1.0", author = "Oriel <Orianafarrugia3@gmail.com>")]
-struct Opts {
+pub struct Opts {
     /// The hashing algorithm to use.
     #[clap(subcommand)]
-    algorithm: algorithms::Algorithm, 
+    pub algorithm: algorithms::Algorithms_List, 
 
     /// A level of verbosity, can be used multiple times.
     #[clap(short, long, parse(from_occurrences))]
-    verbose: i32,
+    pub verbose: i32,
 }
 
 pub fn check_if_file(payload: &String) -> bool {
-    let path = Path::new(payload);
+    let path: &Path = Path::new(payload);
     path.is_file()
-}
-
-pub fn get_opts() -> () {
-    let opts: Opts = Opts::parse();
-    
-    match opts.algorithm {
-        algorithms::Algorithm::md5(options) => {
-            if check_if_file(&options.payload) {
-                println!("file");
-            } else {
-                println!("not file");
-            }
-        }
-    }
 }
 
 // pub fn get_opts() -> () {
