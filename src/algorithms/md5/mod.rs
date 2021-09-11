@@ -1,7 +1,4 @@
 use clap::Clap;
-use std::fs::File;
-use std::io::BufReader;
-use std::path::Path;
 use md5::{Md5, Digest};
 
 fn hash_string(payload: &String) -> String {

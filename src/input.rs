@@ -16,7 +16,7 @@ use crate::algorithms;
 pub struct Opts {
     /// The hashing algorithm to use.
     #[clap(subcommand)]
-    pub algorithm: algorithms::Algorithms_List, 
+    pub algorithm: algorithms::AlgorithmsList, 
 
     /// A level of verbosity, can be used multiple times.
     #[clap(short, long, parse(from_occurrences))]
