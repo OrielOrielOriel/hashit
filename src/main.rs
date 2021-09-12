@@ -7,10 +7,5 @@ mod algorithms;
 use algorithms::md5;
 
 fn main() {
-    let opts = get_options();
-    match opts.algorithm {
-        AlgorithmsOptsList::md5(options) => {
-            
-        }
-    }
+    println!("{:?}", input::get_test_options())
 }

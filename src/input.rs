@@ -7,46 +7,30 @@ When the user provides CLI input, we need to parse it for:
 
 and so on.
 */
-use clap::{Clap, ArgMatches};
+use clap::{Clap, App, Arg, ArgMatches, ArgSettings, clap_app};
 use std::path::Path;
 use crate::algorithms::*;
 
-trait Opts {
-    fn new() -> Self;
-    fn generate(&self) -> Self;
-}
 
-struct Options {
-    arguments: ArgMatches,
-    payload: Option<String>,
-    hashing_algorithm: Option<String>,
-    verbosity: Option<u8>,
-}
 
-impl Opts for Options {
+// fn test_func() -> App<'static> {
+//     let newapp: App = clap_app!( hashit =>
+//         (version: "1.0")
+//         (author: "beansman")
+//         (@arg verbose: -v --verbose +multiple_occurrences)
+//     );
 
-}
-
-#[derive(Clap, Debug)]
-pub struct GenericAlgorithmOpts {
-    #[clap(
-        value_delimiter = ' ',
-        setting = clap::ArgSettings::UseValueDelimiter,
-        setting = clap::ArgSettings::MultipleValues,
-        setting = clap::ArgSettings::TakesValue,
-    )]
-    pub payload: String
-}
-
-#[derive(Clap, Debug)]
-#[allow(non_camel_case_types)]
-pub enum AlgorithmsOptsList {
-    md5(GenericAlgorithmOpts),
-}
-
-// pub fn instantiate_task(options: Opts) -> TerminalTask {
-//     let mut ret: TerminalTask = TerminalTask::new();
-
-//     ret
+//     newapp
 // }
 
+// pub fn update_app(app: App) -> App {
+//     let newnewapp: App = app.arg(Arg::new("test"));
+//     newnewapp
+// }
+
+// pub fn get_test_options() -> ArgMatches { 
+//     let newapp = test_func();
+//     let newnewapp = update_app(newapp);
+
+//     newnewapp.get_matches()
+// }
