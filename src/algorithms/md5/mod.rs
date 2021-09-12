@@ -36,11 +36,3 @@ pub fn hash_controller(payload: &String) -> () {
     let hash: String = hash_string(payload);
     println!("{}", hash);
 }
-
-#[derive(Clap, Debug)]
-#[clap(version = "1.0", author = "Oriel <Orianafarrugia3@gmail.com>", about = "md5 Hashing algorithm.")]
-pub struct Md5Opts {
-    
-    #[clap(setting = clap::ArgSettings::TakesValue)]
-    pub payload: String,
-}

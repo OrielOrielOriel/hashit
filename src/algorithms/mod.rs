@@ -11,7 +11,7 @@ trait Task {
 pub enum Payload {
     InputDataString(String),
     InputDataFile(String),
-    InputDataVec(vec![String, String])
+    InputDataVec(Vec<String>)
 }
 
 pub struct TerminalTask {
@@ -39,11 +39,6 @@ impl Task for TerminalTask {
     fn update_is_file(&mut self, is_file: bool) -> () {
         self.is_file = Some(is_file);
     }
-}
-
-#[derive(Clap, Debug)]
-pub enum AlgorithmsList {
-    md5(crate::algorithms::md5::Md5Opts),
 }
 
 
