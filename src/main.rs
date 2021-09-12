@@ -7,5 +7,5 @@ mod algorithms;
 use algorithms::md5;
 
 fn main() {
-    println!("{:?}", input::get_test_options())
+    println!("{:?}", input::test_get_options())
 }

@@ -1,4 +1,4 @@
-use clap::Clap;
+use clap::{Arg, App, clap_app};
 use md5::{Md5, Digest};
 
 fn hash_string(payload: &String) -> String {
@@ -35,4 +35,19 @@ pub fn hash_controller(payload: &String) -> () {
 
     let hash: String = hash_string(payload);
     println!("{}", hash);
+}
+
+pub fn md5_clap_app() -> App<'static> {
+    let ret = 
+        App::new("md5")
+        .author("Oriel <@OrielOrielOriel>")
+        .version("1.0")
+        .about("md5 hashing algorithm. md-5 0.9.1")
+        .arg(
+            Arg::new("PAYLOAD")
+            .value_delimiter(' ')
+            .required(true)
+        );
+
+    ret
 }

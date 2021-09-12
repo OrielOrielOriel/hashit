@@ -1,4 +1,3 @@
-use clap::Clap;
 pub mod md5;
 
 trait Task {
@@ -27,7 +26,13 @@ fn generate_uuid() -> u32 { 123456789 }
 
 impl Task for TerminalTask {
     fn new() -> Self {
-        TerminalTask { id: generate_uuid(), payload: None, hash: None, is_file: None, verbosity: None }
+        TerminalTask { 
+            id: generate_uuid(), 
+            payload: None,
+            hash: None, 
+            is_file: None, 
+            verbosity: None 
+        }
     }
 
     fn update_payload(&mut self, payload: Payload) -> () {
