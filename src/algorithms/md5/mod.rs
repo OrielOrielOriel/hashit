@@ -44,8 +44,14 @@ pub fn md5_clap_app() -> App<'static> {
         .version("1.0")
         .about("md5 hashing algorithm. md-5 0.9.1")
         .arg(
+            Arg::new("verbose")
+            .short('v')
+            .about("Enable verbose output mode. Multiple levels.")
+            .multiple_occurrences(true)
+            .required(true))
+        .arg(
             Arg::new("PAYLOAD")
-            .value_delimiter(' ')
+            .about("String or file to be hashed.")
             .required(true)
         );
 

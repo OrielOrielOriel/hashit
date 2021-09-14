@@ -7,5 +7,6 @@ mod algorithms;
 use algorithms::md5;
 
 fn main() {
-    println!("{:?}", input::test_get_options())
+    let app = input::iniate_clap_app();
+    input::generate_task(app);
 }
