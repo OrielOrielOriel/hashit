@@ -1,4 +1,4 @@
-use md5;
+mod md5;
 use clap::Parser;
 
 #[derive(Parser, Debug)]
@@ -10,7 +10,6 @@ struct Args {
 
 fn main() {
   let args = Args::parse();
-  
-  let digest = md5::compute(&args.input);
+    
   println!("{:?}", digest);
 }
