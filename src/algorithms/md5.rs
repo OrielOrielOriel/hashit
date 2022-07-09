@@ -1,5 +1,5 @@
 use md5;
 
-fn hash(input: String) -> u8 {
+pub fn hash(input: String) -> md5::Digest {
   md5::compute(&input)
 }
