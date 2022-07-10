@@ -1,26 +1,25 @@
 mod algorithms;
-use clap::{ArgEnum, Parser};
+use clap::Parser;
 
 #[derive(Parser)]
-#[clap(author, version, about, long_about = None)] 
+#[clap(author, version, about, long_about = None)]
 struct Args {
-  #[clap(arg_enum)]
-  algorithm: Algo,
+    #[clap(arg_enum)]
+    algorithm: algorithms::Algo,
 
-  #[clap()]
-  input: String,
-}
-
-#[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ArgEnum)]
-pub enum Algo {
-  md5,
+    #[clap()]
+    input: String,
 }
 
 fn main() {
-  let args = Args::parse();
+    let args = Args::parse();
 
-  match args.algorithm {
-    Algo::md5 => { println!("{:?}", algorithms::md5::hash(args.input)) },
-    
-  }
+    match args.algorithm {
+        algorithms::Algo::Md5 => {
+            println!("{}", algorithms::md5::hash(&args.input))
+        }
+        algorithms::Algo::Sha1 => {
+            println!("{}", algorithms::sha1::hash(&args.input))
+        }
+    }
 }
