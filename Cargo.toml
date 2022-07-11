@@ -7,5 +7,9 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "3.2.8", features = ["derive"] }
+ntlm-hash = "0.1.0"
 md5 = "0.7.0"
+md4 = "0.10.1"
+md2 = "0.10.1"
 sha-1 = "0.10.0"
+sha2 = "0.10.2"

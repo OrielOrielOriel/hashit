@@ -1,7 +1,7 @@
-use sha1::{Digest, Sha1};
+use sha2::{Digest, Sha224};
 
 pub fn hash(input: &str) -> String {
-    let mut hasher = Sha1::new();
+    let mut hasher = Sha224::new();
     hasher.update(input);
     
     format!("{:X}", hasher.finalize())
@@ -13,6 +13,6 @@ mod tests {
     #[test]
     fn generates_correct_hash() {
         let result = hash("test");
-        assert_eq!(result, "A94A8FE5CCB19BA61C4C0873D391E987982FBBD3")
+        assert_eq!(result, "90A3ED9E32B2AAF4C61C410EB925426119E1A9DC53D4286ADE99A809")
     }
 }
